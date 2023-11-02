@@ -59,13 +59,12 @@ public  void setDriver(WebDriver paramDriver) throws MalformedURLException {
 	
 public WebDriver getWebDriver(String browserName) throws MalformedURLException {
 	if (browserName.equals("Chrome")) {
-	//System.setProperty("webdriver.chrome.driver", "/driver/chromedriver");
+//		System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir")+"/Comdex/driver/chromedriver.exe");
 	
 		ChromeOptions options = new ChromeOptions();
 		WebDriverManager.chromedriver().setup();
 		options.addArguments("disable-notifications");
-		//options.addArguments("headless");
-		//options.setBinary("/var/bin/google-chrome");
+		options.addArguments("--headless");
 		ChromeDriver driver = new ChromeDriver(options);
 		System.out.println("Chrome Browser launched...");	
 		setDriver(driver);
