@@ -58,13 +58,13 @@ public  void setDriver(WebDriver paramDriver) throws MalformedURLException {
 	}
 	
 public WebDriver getWebDriver(String browserName) throws MalformedURLException {
-	if (browserName.equals("Chrome")) {
+	if (browserName.equals("IE")) {
 //		System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir")+"/Comdex/driver/chromedriver.exe");
 	
 		ChromeOptions options = new ChromeOptions();
 		WebDriverManager.chromedriver().setup();
 		options.addArguments("disable-notifications");
-		options.addArguments("--headless");
+		//options.addArguments("--headless");
 		ChromeDriver driver = new ChromeDriver(options);
 		System.out.println("Chrome Browser launched...");	
 		setDriver(driver);
@@ -86,7 +86,7 @@ public WebDriver getWebDriver(String browserName) throws MalformedURLException {
 		setDriver(driver);
 		driver.manage().window().maximize();
 
-	} else if (browserName.equalsIgnoreCase("IE")) {
+	} else if (browserName.equalsIgnoreCase("Chrome")) {
 		System.setProperty("webdriver.ie.driver", System.getProperty("user.dir")+"\\driver\\IEDriverServer.exe");
 		driver = new InternetExplorerDriver();
 		setDriver(driver);
