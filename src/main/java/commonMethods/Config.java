@@ -58,7 +58,7 @@ public  void setDriver(WebDriver paramDriver) throws MalformedURLException {
 	}
 	
 public WebDriver getWebDriver(String browserName) throws MalformedURLException {
-	if (browserName.equals("IE")) {
+	if (browserName.equals("Chrome")) {
 //		System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir")+"/Comdex/driver/chromedriver.exe");
 	
 		ChromeOptions options = new ChromeOptions();
@@ -86,7 +86,7 @@ public WebDriver getWebDriver(String browserName) throws MalformedURLException {
 		setDriver(driver);
 		driver.manage().window().maximize();
 
-	} else if (browserName.equalsIgnoreCase("Chrome")) {
+	} else if (browserName.equalsIgnoreCase("IE")) {
 		System.setProperty("webdriver.ie.driver", /driver/IEDriverServer.exe");
 		driver = new InternetExplorerDriver();
 		setDriver(driver);
