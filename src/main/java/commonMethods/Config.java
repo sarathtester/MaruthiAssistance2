@@ -87,7 +87,7 @@ public WebDriver getWebDriver(String browserName) throws MalformedURLException {
 		driver.manage().window().maximize();
 
 	} else if (browserName.equalsIgnoreCase("IE")) {
-		System.setProperty("webdriver.ie.driver", /driver/IEDriverServer.exe");
+		System.setProperty("webdriver.ie.driver", System.getProperty("user.dir")+"\\driver\\IEDriverServer.exe");
 		driver = new InternetExplorerDriver();
 		setDriver(driver);
 		driver.manage().window().maximize();
