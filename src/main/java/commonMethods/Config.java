@@ -63,7 +63,7 @@ public WebDriver getWebDriver(String browserName) throws MalformedURLException {
 	
 		ChromeOptions options = new ChromeOptions();
 		//WebDriverManager.chromedriver().setup();
-		options.add_argument('headless')
+		options.addArguments('headless')
 		options.addArguments("disable-notifications");
 		//options.addArguments("--headless");
 		ChromeDriver driver = new ChromeDriver(options);
