@@ -40,7 +40,7 @@ public class EmailSender {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress("sanjev.m@trackdfect.com"));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recipient));
-            message.setSubject(subject);
+            message.setSubject("ATU Report");
             message.setText(content);
             
             // Create the email body part
@@ -57,6 +57,7 @@ public class EmailSender {
             Multipart multipart = new MimeMultipart();
             multipart.addBodyPart(messageBodyPart);
             multipart.addBodyPart(attachmentPart);
+            
 
             // Set the content of the email
             message.setContent(multipart);

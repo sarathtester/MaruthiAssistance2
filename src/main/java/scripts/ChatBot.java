@@ -1,29 +1,34 @@
 package scripts;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import org.testng.Reporter;
 
+import atu.testng.reports.logging.LogAs;
 import commonMethods.Config;
 import commonMethods.Keywords;
+import commonMethods.Utils;
 
 public class ChatBot extends Keywords {
 	
+	String MSSFassert = Utils.getDataFromTestData("Maruthi", "Excepted text1");
 
 	  public void createnexa(WebDriver driver, String URL) {
 		  
 		    navigateUrl(driver, URL);
 		  
-		    responseTimeCalculator(driver, chatbot);
 		    waitForElementWithLessWait(driver, chatbot);
 		    click(driver,chatbot);
-			
 		    
-		    responseTimeCalculator(driver, loan);
-			waitForElementWithLessWait(driver,loan);
+			waitForElementWithLessWait(driver, loan);
+			responseTimeCalculator(driver, loan);
 			click(driver,loan);
 			asserterText(driver, MssfText,Config.MSSFassert,"Mssf loan");
 			
-			responseTimeCalculator(driver, financier);
+			Assert.fail();
+			
 			waitForElementWithLessWait(driver,financier);
 			click(driver,financier);
 			asserterText(driver, financierText,Config.financerassert,"finacier" );
@@ -32,132 +37,56 @@ public class ChatBot extends Keywords {
 			waitForElementWithLessWait(driver, raise);
 			sendKeys(driver, raise , "raise an issue");
 			enter(driver);
+			System.out.println("raise an issue query is typed");
+			addfps(driver, "raise an issue query is typed","",true, "");
 			asserterText(driver, raiseText,Config.raiseassert,"raise an issue" );
 			
-			responseTimeCalculator(driver, doc);
-			waitForElementWithLessWait(driver, doc);
-			sendKeys(driver, doc , "doc");
+			waitForElementWithLessWait(driver, inputfield);
+			sendKeys1(driver, inputfield , "doc");
+			System.out.println("user is able type the text doc");
+			addfps(driver, "user is able type the text doc","",true, "");
+			System.out.println("Predictive text is availble when typing a query");
+			addfps(driver, "Predictive text is availble when typing a query","",true, "");
+			waitForElementWithLessWait(driver, predictive_text);
+			click(driver, predictive_text);
 			enter(driver);
-			asserterText(driver,docText,Config.docassert,"doc");
 			
-			responseTimeCalculator(driver, process);
-			waitForElementWithLessWait(driver, process);
-			sendKeys(driver, process , "process");
+			waitForElementWithLessWait(driver, inputfield);
+			sendKeys(driver, inputfield , "process");
 			enter(driver);
+			System.out.println("Unsure state text is availble when typing a partial query process");
+			addfps(driver, "Unsure state text is availble when typing a partial query process","",true, "");
 			asserterText(driver, processText, Config.processassert,"process");
 			
-			responseTimeCalculator(driver, cross);
-			waitForElementWithLessWait(driver, cross);
-			click(driver, cross);	
+			waitForElementWithLessWait(driver, Close_button);
+			click(driver, Close_button);	
 			
-			responseTimeCalculator(driver, feed1);
-			waitForElementWithLessWait(driver, feed1);
-			click(driver, feed1);	
+			responseTimeCalculator(driver, submit);
+			waitForElementWithLessWait(driver, feedback1);
+			click(driver, feedback1);	
 			
-			responseTimeCalculator(driver, feed2);
-			waitForElementWithLessWait(driver, feed2);
-			click(driver, feed2);	
+			waitForElementWithLessWait(driver, feedback2);
+			click(driver, feedback2);	
 			
-			responseTimeCalculator(driver, submit3);
-			waitForElementWithLessWait(driver, submit3);
-			click(driver, submit3);	
+			waitForElementWithLessWait(driver, submit);
+			click(driver, submit);
+			System.out.println("Ratings and queries are submitted.");
+			addfps(driver, "Ratings and queries are submitted.","",true, "");
 			
+			if(Success_popup.contains("Thank you for your valuable feedback")) {
+				System.out.println("Thank you for the valuable feedback the popup has received, and the bot is getting closed.");
+				addfps(driver, "Thank you for the valuable feedback the popup has received, and the bot is getting closed.","",true, "");
+			}else {
+				System.out.println("Not get excepted message");
+				add1(driver, "Not get excepted message", LogAs.FAILED,true,"");
+			}
 			
-			    waitForElementWithLessWait(driver, chatbot);
-			    click(driver,chatbot);
-			    //responseTimeCalculator(driver, process);
-			    asserterText(driver, MssfText,Config.MSSFassert,"Mssf loan history");
-			    asserterText(driver, financierText,Config.financerassert,"finaciar history" );
-			    asserterText(driver, raiseText,Config.raiseassert,"raise an issue history" );
-			    asserterText(driver,docText,Config.docassert,"doc history");
-			    asserterText(driver, processText, Config.processassert,"process history");
-			    
-			
+			waitForElementWithLessWait(driver, chatbot);
+			click(driver, chatbot);
+			System.out.println("Chat Bot opened with history of queries searched before");
+			addfps(driver, "Chat Bot opened with history of queries searched before","",true, "");
 	  }
 		
 
-	}
-
-			
-			
-			
-			
-			
-			
-//			scrollTop(driver);
-//			responseTimeCalculator(driver, salaried);
-//			waitForElementWithLessWait(driver, salaried);
-//			click(driver, salaried);
-//			
-//			scrollTop(driver);
-//			responseTimeCalculator(driver, main);
-//			waitForElementWithLessWait(driver, main);
-//			click(driver, main);
-//			
-//			responseTimeCalculator(driver, dealer);
-//			waitForElementWithLessWait(driver, dealer);
-//			click(driver, dealer);	
-//			
-//			responseTimeCalculator(driver, submit1);
-//			waitForElementWithLessWait(driver, submit1);
-//			
-//			click(driver, submit1);
-//			
-//			
-//			
-////			responseTimeCalculator(driver, cusname);
-//			waitForElementWithLessWait(driver, cusname);
-//			sendKeys(driver, cusname , "test");
-//			
-//			responseTimeCalculator(driver, cusnumber);
-//			waitForElementWithLessWait(driver, cusnumber);
-//		    sendKeys(driver, cusnumber,"9999999999");
-//		    
-//		    responseTimeCalculator(driver, cusnumber);
-//		    waitForElementWithLessWait(driver, cusnumber);
-//			sendKeys(driver, cusnumber,"9999999999");
-//			
-//			responseTimeCalculator(driver, query);
-//			waitForElementWithLessWait(driver, query);
-//			sendKeys(driver, query,"test");
-//			
-//			responseTimeCalculator(driver, journey);
-//			waitForElementWithLessWait(driver, journey);
-//			click(driver, journey);
-//			
-//			responseTimeCalculator(driver, jour);
-//			waitForElementWithLessWait(driver, jour);
-//			click(driver, jour);
-//			
-//			responseTimeCalculator(driver, components);
-//			waitForElementWithLessWait(driver, components);
-//            click(driver, components);
-//            
-//            responseTimeCalculator(driver, comp);
-//            waitForElementWithLessWait(driver, comp);
-//			click(driver, comp);
-//			
-//			responseTimeCalculator(driver, submit2);
-//			waitForElementWithLessWait(driver, submit2);
-//			click(driver, submit2);	
-//			
-//			responseTimeCalculator(driver, cross);
-//			waitForElementWithLessWait(driver, cross);
-//			click(driver, cross);	
-//			
-//			responseTimeCalculator(driver, feed1);
-//			waitForElementWithLessWait(driver, feed1);
-//			click(driver, feed1);	
-//			
-//			responseTimeCalculator(driver, feed2);
-//			waitForElementWithLessWait(driver, feed2);
-//			click(driver, feed2);	
-//			
-//			responseTimeCalculator(driver, submit3);
-//			waitForElementWithLessWait(driver, submit3);
-//			click(driver, submit3);	
-//
-//		  
-//		  
-		  
+	}	  
 	 

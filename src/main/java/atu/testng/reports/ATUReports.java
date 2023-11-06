@@ -275,7 +275,9 @@ public class ATUReports {
 		localSteps.setLogAs(paramLogAs);
 		buildReportData(localSteps);
 		localSteps.setStatus("PASS");
+		
 	}
+
 	
 	public void add(String paramString,LogAs paramLogAs, boolean paramBoolean,String value,double time) {
 		//if (paramBoolean)

@@ -53,7 +53,7 @@ public class CustomTestListener implements ITestListener{
         // Send email with the content
        // EmailSender.sendTestSummaryEmail("sanjivekumar257@gmail.com", "Maruti Test Summary Report"+" - "+timeStamp, emailContent.toString());
         try {
-			EmailSender.sendTestSummaryEmail("sanjivekumar257@gmail.com", "Maruti Test Summary Report"+" - "+timeStamp, emailContent.toString(), System.getProperty("user.dir") +"/test-output/emailable-report.html");
+			EmailSender.sendTestSummaryEmail("sarath.s@trackdfect.com", "Maruti Test Summary Report"+" - "+timeStamp, emailContent.toString(), System.getProperty("user.dir") +"/test-output/emailable-report.html");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

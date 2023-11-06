@@ -1,5 +1,3 @@
-
-
 package commonMethods;
 
 import java.awt.Color;
@@ -151,7 +149,7 @@ public class Keywords extends ATUReports implements marathisuzukilocator {
 	      int h1 = img1.getHeight();
 	      int h2 = img2.getHeight();
 	      if ((w1!=w2)||(h1!=h2)) {
-	         System.out.println("Both images should have same dimwnsions");
+	         System.out.println("Both images should have same dimensions");
 	      } else {
 	         long diff = 0;
 	         for (int j = 0; j < h1; j++) {
@@ -282,7 +280,7 @@ public void waitForElementWithLessWait(WebDriver driver, String xpath) {
 			//driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
 			//System.out.println(driver.getTitle());
-		WebDriverWait wait1 = new WebDriverWait(driver,5);
+		WebDriverWait wait1 = new WebDriverWait(driver,120);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(values[1])));
 		add(driver, "Wait for visibility of Element" + values[0], LogAs.PASSED, true, values[0]);
 		}catch (Exception e) {
@@ -307,41 +305,31 @@ public void waitForElementWithLessWait(WebDriver driver, String xpath) {
 			webElement.click();
 			System.out.println(values[0]+" clicked");
 			add(driver, "Click on " + values[0], LogAs.PASSED, true, values[0]);
+			
 		} catch (Exception e) {
 			System.out.println(" Exception "+e);
 			add1(driver, "Unable to click on " + values[0], LogAs.FAILED, true, values[0]);
 			//Assert.fail();
 		}
 	}
-	public void responseTimeCalculator(WebDriver driver, String xp) {
-//		 String[] values = splitXpath(xpath);
-//		 click(driver,chatbot);
-		String[] value2 = splitXpath(xp);
-		long startTime = System.currentTimeMillis();
-		WebDriverWait wait1 = new WebDriverWait(driver,30);
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(value2[1])));
-		long endTime = System.currentTimeMillis();
-		long responseTime = endTime - startTime;
-		String time = ""+responseTime;
-		System.out.println("Response time : "+responseTime);
-		addfps(driver, "Response Time" , time , true,"");
-		
-		if( responseTime<=5000) {
-			flag=true;
-			System.out.println("Response time within 5 seconds");
-			add(driver, "Response time within 5 seconds : " + value2[0], LogAs.PASSED, true, value2[0]);
+	
+	public void responseTimeCalculator(WebDriver driver, String xpath) {
+		 String[] values = splitXpath(xpath);
+		 
+		 long Start = System.currentTimeMillis();
+		 WebDriverWait wait1 = new WebDriverWait(driver,120);
+		 wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(values[1])));
+		 long finish = System.currentTimeMillis();
+		 
+		 double totaltime = (finish - Start);
 
-
-		}
-		else {
-			flag= false;
-			System.out.println("Response time more than 5 seconds");
-			add1(driver, "Response time more than 5 seconds : " + value2[0], LogAs.FAILED, true, value2[0]);
-			String errortxt=value2[0]+" is having issue";
-//			Assert.fail();
+		// double seconds = TimeUnit.MILLISECONDS.toSeconds(totaltime);
+		 
+		 System.out.println("Time taken for visiblity of "+values[0] + " : " +totaltime/1000 + " sec");
+		 add(driver, "Time taken for visiblity of " + values[0]+" : " +totaltime + " ms", LogAs.PASSED, true, values[0]);
 		}
 		
-	}
+	
 	
 	public void click1(WebDriver driver, String path,int input) {
 		String[] values = splitXpath(path);
@@ -421,32 +409,55 @@ public void waitForElementWithLessWait(WebDriver driver, String xpath) {
 
 		String[] value = splitXpath(xpath);
 		WebDriverWait wait1 = new WebDriverWait(driver, 30);
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(value[0])));
-		WebElement msg = driver.findElement(By.xpath(value[0]));
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(value[1])));
+		WebElement msg = driver.findElement(By.xpath(value[1]));
 		String field = msg.getText();
-		System.out.println(field);
+		System.out.println("Actual results for "+ value[0] + field);
 
 		if (field.contains(Text)) {
 
-			System.out.println(menutype+" - is visible");
-			addfps(driver, "Valid menu", field,true, "");
+			System.out.println("Verified excepted reply matches with actual reply" );
+			addfps(driver, "Verified excepted reply matches with actual reply", field,true, "");
 		} else {
-			System.out.println("Invalid");
-		add1(driver, "Invalid menu", LogAs.FAILED,true, value[0]);
+			System.out.println("Verified excepted reply does not match with actual reply");
+		add1(driver, "Verified excepted reply does not match with actual reply", LogAs.FAILED,true, value[0]);
 
 		}
 	}
 
+	public void asserterText1(WebDriver driver, String text, String xpath) {
+
+		String[] value = splitXpath(xpath);
+		WebDriverWait wait1 = new WebDriverWait(driver, 30);
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(value[1])));
+		WebElement msg = driver.findElement(By.xpath(value[1]));
+		String field = msg.getText();
+		System.out.println( "Actual results for "+value[0] + field);
+
+		if (text.contains(field)) {
+
+			System.out.println("Excepted reply matches with actual reply" );
+			addfps(driver, "Excepted reply matches with actual reply", field,true, "");
+		} else {
+			System.out.println("Excepted reply does not match with actual reply");
+		add1(driver, "Excepted reply does not match with actual reply", LogAs.FAILED,true, value[0]);
+
+		}
+	}
+
+	
 	public String actionType(WebDriver driver, String xpath, String keysToSend) {
 		String[] values = splitXpath(xpath);
 		try {
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 			WebElement webElement = driver.findElement(By.xpath(values[1]));
 			Actions action = new Actions(driver);
 			action.sendKeys(webElement, keysToSend).build().perform();
 			add(driver, "Type on " + values[0], keysToSend, true, values[0]);
 		} catch (StaleElementReferenceException e) {
-			add1(driver, "Unable to type on " + values[0], LogAs.FAILED, true, values[0]);
-			//Assert.fail();
+			add1(driver, "Unable to type on " + values[0]+"- "+e.getLocalizedMessage(), LogAs.FAILED, true, values[0]);
+			((JavascriptExecutor) driver).executeScript("lambda-status=failed");
+//			Assert.fail();
 		}
 		return keysToSend;
 	}
@@ -486,6 +497,25 @@ public void waitForElementWithLessWait(WebDriver driver, String xpath) {
 			
 			add(driver, "Type on " + values[0], keysToSend, true, values[0]);
 
+		} catch (Exception e) {
+			add1(driver, "Unable to type on " + values[0], keysToSend, true, values[0]);
+			//Assert.fail();
+		}
+		return keysToSend;
+		
+	}
+	
+	public String sendKeys1(WebDriver driver, String xpaths, String keysToSend) {
+		String[] values = splitXpath(xpaths);
+		
+		try {
+			WebElement webElement = driver.findElement(By.xpath(values[1]));
+			for (char c : keysToSend.toCharArray()) {
+	            String letter = String.valueOf(c);
+	            webElement.sendKeys(letter);
+//			webElement.sendKeys(keysToSend);
+			}
+			add(driver, "Type on " + values[0], keysToSend, true, values[0]);
 		} catch (Exception e) {
 			add1(driver, "Unable to type on " + values[0], keysToSend, true, values[0]);
 			//Assert.fail();

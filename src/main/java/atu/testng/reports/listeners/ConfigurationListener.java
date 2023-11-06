@@ -11,9 +11,9 @@ import org.testng.IConfigurationListener2;
 import org.testng.ITestResult;
 
 public class ConfigurationListener implements IConfigurationListener2 {
-	 List<ITestResult> passedConfigurations = new ArrayList<ITestResult>();
-	 List<ITestResult> failedConfigurations = new ArrayList<ITestResult>();
-	 List<ITestResult> skippedConfigurations = new ArrayList<ITestResult>();
+	 protected List<ITestResult> passedConfigurations = new ArrayList<ITestResult>();
+	 protected List<ITestResult> failedConfigurations = new ArrayList<ITestResult>();
+	 protected List<ITestResult> skippedConfigurations = new ArrayList<ITestResult>();
 	
 	TestCaseReportsPageWriter testWriter=new TestCaseReportsPageWriter();
 
