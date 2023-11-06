@@ -5,8 +5,8 @@
     <listener class-name="atu.testng.reports.listeners.ATUReportsListener"/>
     <listener class-name="atu.testng.reports.listeners.ConfigurationListener"/>
     <listener class-name="atu.testng.reports.listeners.MethodListener"/>
-    <listener class-name="mails.CustomTestListener"/>
     <listener class-name="org.testng.reporters.XMLReporter"/>
+    <listener class-name="com.qa.ExtentReportListener.ExtentReportNG"/>
   </listeners>
   <test thread-count="5" name="Test(failed)">
     <classes>
